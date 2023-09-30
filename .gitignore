@@ -1,0 +1,28 @@
+blog/node_modules
+backend/env
+# backend/.env
+blog.code-workspace
+
+
+logs
+*.log
+blog/npm-debug.log*
+blog/yarn-debug.log*
+blog/yarn-error.log*
+blog/pnpm-debug.log*
+blog/lerna-debug.log*
+
+blog/dist
+blog/dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
