@@ -1,8 +1,8 @@
 blog/node_modules
 backend/env
-# backend/.env
+backend/.env
 blog.code-workspace
-
+desktop.ini
 
 logs
 *.log

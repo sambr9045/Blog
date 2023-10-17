@@ -1,35 +1,78 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Home from "./Home";
+import About from "./About";
+import Articles from "./Articles";
+import Article from "./Article";
+import Contact from "./Contact";
+import Login from "./components/account/login";
+import Cpanel from "./components/cpanel";
+import CategoryContext from "./components/context/CategorieContext";
+import Category from "./Category";
+// import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet";
+import Search from "./Search";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/blogapi/categories/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Origin: "http://localhost:5173/", // Set this to your React app's URL
+      },
+    })
+      .then((response) => response.json()) // Parse the response as JSON
+      .then((data) => {
+        setCategories(data);
+      })
+      .catch((error) => console.error("Error:", error));
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <CategoryContext.Provider value={categories}>
+        <Router>
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={
+                <>
+                  <Helmet>
+                    <title>
+                      SBINFOHUB | Your Source for Diverse Blog Topics
+                    </title>
+                  </Helmet>
+                  <Home />
+                </>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <>
+                  <Helmet>
+                    <title>SBINFOHUB | about use </title>
+                    <About />
+                  </Helmet>
+                </>
+              }
+            />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cpanel" element={<Cpanel />} />
+            <Route path="/article/:slug" element={<Article />} />
+            <Route path="/category/:slug" element={<Category />} />
+            <Route path="/search" element={<Search />} />
+          </Routes>
+        </Router>
+      </CategoryContext.Provider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
