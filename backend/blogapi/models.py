@@ -31,17 +31,19 @@ class Tag(models.Model):
 
 
 class BlogPost(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=300)
     article = RichTextField()  # Use RichTextField instead of TextField
     description = models.TextField(default="None", blank=False, null=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, max_length=300)
     image = models.ImageField(upload_to="media/blog_images/")
     thumbnail = models.ImageField(
         upload_to="media/blog_thumbnails/", blank=True, max_length=300
     )
     views_count = models.PositiveIntegerField(default=0)
-    slug = models.SlugField(unique=True, blank=True)  # Add the slug field
+    slug = models.SlugField(
+        unique=True, blank=True, max_length=300
+    )  # Add the slug field
     created_at = models.DateTimeField(default=timezone.now)
 
     def save(self, *args, **kwargs):

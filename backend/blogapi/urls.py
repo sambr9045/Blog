@@ -14,4 +14,11 @@ urlpatterns = [
     ),
     path("tags/", views.TagListView.as_view(), name="tags-list"),
     path("search", views.SearchView.as_view(), name="seache-list"),
+    path(
+        "article-viewcount-update/",
+        views.UpdateViewsCountView.as_view(),
+        name="article-views-count-update",
+    ),
+    path("mostviewed/", views.MostviewedView.as_view(), name="mostviews-list"),
+    path("recentarticle/", views.RecentArticleView.as_view(), name="recent-article"),
 ]
