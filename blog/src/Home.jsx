@@ -1,64 +1,39 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
-import background4 from "/img/carousol/background4.jpeg";
 import Carousel from "./components/Carousel";
+import { Helmet } from "react-helmet";
+const domain = "http://127.0.0.1:8000";
+const headers = {
+  "Content-Type": "application/json",
+  Origin: "http://localhost:5173/", // Set this to your React app's URL
+};
+
+const fetchData = (endpoint, setData) => {
+  fetch(`${domain}/blogapi/${endpoint}`, {
+    method: "GET",
+    headers: headers,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      setData(data);
+    })
+    .catch((error) => console.error("Error:", error));
+};
+
 export default function Home() {
-  const posts = [
-    {
-      id: 1,
-      title: "Boost your conversion rate",
-      href: "#",
-      description:
-        "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
-      date: "Mar 16, 2020",
-      datetime: "2020-03-16",
-      category: { title: "Marketing", href: "#" },
-      author: {
-        name: "Michael Foster",
-        role: "Co-Founder / CTO",
-        href: "#",
-        imageUrl:
-          "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      },
-    },
-    {
-      id: 2,
-      title: "Boost your conversion rate",
-      href: "#",
-      description:
-        "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
-      date: "Mar 16, 2020",
-      datetime: "2020-03-16",
-      category: { title: "Marketing", href: "#" },
-      author: {
-        name: "Michael Foster",
-        role: "Co-Founder / CTO",
-        href: "#",
-        imageUrl:
-          "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      },
-    },
+  const [most_view_article, setMost_view_article] = useState([]);
+  const [recent_articles, setRecentarticles] = useState([]);
+  const [articles, setArticles] = useState([]);
 
-    {
-      id: 3,
-      title: "Boost your conversion rate",
-      href: "#",
-      description:
-        "Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.",
-      date: "Mar 16, 2020",
-      datetime: "2020-03-16",
-      category: { title: "Marketing", href: "#" },
-      author: {
-        name: "Michael Foster",
-        role: "Co-Founder / CTO",
-        href: "#",
-        imageUrl:
-          "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      },
-    },
+  useEffect(() => {
+    fetchData("mostviewed/", setMost_view_article);
+    fetchData("recentarticle/", setRecentarticles);
+    fetchData("articles/?limit=10", setArticles);
 
-    // More posts...
-  ];
+    <Helmet>
+      <title>SBINFOHUB | Your Source for Diverse Blog Topics</title>
+    </Helmet>;
+  }, []);
 
   return (
     <>
@@ -119,25 +94,34 @@ export default function Home() {
             </p>
           </div>
           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            {posts.map((post) => (
+            {most_view_article.map((post) => (
               <article
                 key={post.id}
                 className="flex max-w-xl flex-col items-start justify-between"
               >
+                <div className="ab tn">
+                  <img
+                    src={`${domain}${post.thumbnail}`}
+                    alt=""
+                    className="mo tn adq aij aqe bxy cvd rounded-lg"
+                    style={{ maxWidth: "300px", maxHeight: "200px" }}
+                  />
+                  <div className="aa ak adq bbt bbx bco"></div>
+                </div>
                 <div className="flex items-center gap-x-4 text-xs">
-                  <time dateTime={post.datetime} className="text-gray-500">
-                    {post.date}
+                  <time dateTime={post.created_at} className="text-gray-500">
+                    {new Date(post.created_at).toLocaleString()}
                   </time>
                   <a
-                    href={post.category.href}
+                    href={`/category/${post.category_name}`}
                     className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
                   >
-                    {post.category.title}
+                    {post.category_name}
                   </a>
                 </div>
                 <div className="group relative">
                   <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                    <a href={post.href}>
+                    <a href={`article/${post.slug}`}>
                       <span className="absolute inset-0" />
                       {post.title}
                     </a>
@@ -146,24 +130,16 @@ export default function Home() {
                     {post.description}
                   </p>
                 </div>
-                <div className="relative mt-8 flex items-center gap-x-4">
-                  <img
-                    src={post.author.imageUrl}
-                    alt=""
-                    className="h-10 w-10 rounded-full bg-gray-50"
-                  />
-                  <div className="text-sm leading-6">
-                    <p className="font-semibold text-gray-900">
-                      <a href={post.author.href}>
-                        <span className="absolute inset-0" />
-                        {post.author.name}
-                      </a>
-                    </p>
-                    <p className="text-gray-600">{post.author.role}</p>
-                  </div>
-                </div>
               </article>
             ))}
+          </div>
+          <div className="text-center mt-10">
+            <a
+              href="/articles/?query=mostpopular"
+              className="py-3 px-4 bg-red-900 text-white rounded-md shadow-md"
+            >
+              Read More
+            </a>
           </div>
         </div>
       </div>
@@ -181,7 +157,7 @@ export default function Home() {
             </p>
           </div>
           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            {posts.map((post) => (
+            {recent_articles.map((post) => (
               <>
                 <article
                   key={post.id}
@@ -189,26 +165,27 @@ export default function Home() {
                 >
                   <div className="ab tn">
                     <img
-                      src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=3603&amp;q=80"
+                      src={`${domain}${post.thumbnail}`}
                       alt=""
                       className="mo tn adq aij aqe bxy cvd rounded-lg"
+                      style={{ maxWidth: "300px", maxHeight: "200px" }}
                     />
                     <div className="aa ak adq bbt bbx bco"></div>
                   </div>
                   <div className="flex items-center gap-x-4 text-xs">
-                    <time dateTime={post.datetime} className="text-gray-500">
-                      {post.date}
+                    <time dateTime={post.created_at} className="text-gray-500">
+                      {new Date(post.created_at).toLocaleString()}
                     </time>
                     <a
-                      href={post.category.href}
+                      href={`/category/${post.category_name}`}
                       className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
                     >
-                      {post.category.title}
+                      {post.category_name}
                     </a>
                   </div>
                   <div className="group relative">
                     <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                      <a href={post.href}>
+                      <a href={`article/${post.slug}`}>
                         <span className="absolute inset-0" />
                         {post.title}
                       </a>
@@ -217,7 +194,7 @@ export default function Home() {
                       {post.description}
                     </p>
                   </div>
-                  <div className="relative mt-8 flex items-center gap-x-4">
+                  {/* <div className="relative mt-8 flex items-center gap-x-4">
                     <img
                       src={post.author.imageUrl}
                       alt=""
@@ -232,10 +209,18 @@ export default function Home() {
                       </p>
                       <p className="text-gray-600">{post.author.role}</p>
                     </div>
-                  </div>
+                  </div> */}
                 </article>
               </>
             ))}
+          </div>
+          <div className="text-center mt-10">
+            <a
+              href="/articles"
+              className="py-3 px-4 bg-red-900 text-white rounded-md shadow-md"
+            >
+              Read More
+            </a>
           </div>
         </div>
       </div>
@@ -254,25 +239,34 @@ export default function Home() {
             </p>
           </div>
           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 ">
-            {posts.map((post) => (
+            {articles.map((post) => (
               <article
                 key={post.id}
                 className="flex max-w-xl flex-col items-start justify-between mt-4 mb-4"
               >
+                <div className="ab tn">
+                  <img
+                    src={`${domain}${post.thumbnail}`}
+                    alt=""
+                    className="mo tn adq aij aqe bxy cvd rounded-lg"
+                    style={{ maxWidth: "300px", maxHeight: "200px" }}
+                  />
+                  <div className="aa ak adq bbt bbx bco"></div>
+                </div>
                 <div className="flex items-center gap-x-4 text-xs">
-                  <time dateTime={post.datetime} className="text-gray-500">
-                    {post.date}
+                  <time dateTime={post.created_at} className="text-gray-500">
+                    {new Date(post.created_at).toLocaleString()}
                   </time>
                   <a
-                    href={post.category.href}
+                    href={`/category/${post.category_name}`}
                     className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
                   >
-                    {post.category.title}
+                    {post.category_name}
                   </a>
                 </div>
                 <div className="group relative">
                   <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                    <a href={post.href}>
+                    <a href={post.slug}>
                       <span className="absolute inset-0" />
                       {post.title}
                     </a>
@@ -281,7 +275,7 @@ export default function Home() {
                     {post.description}
                   </p>
                 </div>
-                <div className="relative mt-8 flex items-center gap-x-4">
+                {/* <div className="relative mt-8 flex items-center gap-x-4">
                   <img
                     src={post.author.imageUrl}
                     alt=""
@@ -296,9 +290,17 @@ export default function Home() {
                     </p>
                     <p className="text-gray-600">{post.author.role}</p>
                   </div>
-                </div>
+                </div> */}
               </article>
             ))}
+          </div>
+          <div className="text-center mt-10">
+            <a
+              href="/articles/"
+              className="py-3 px-4 bg-red-900 text-white rounded-md shadow-md"
+            >
+              Read More
+            </a>
           </div>
         </div>
       </div>

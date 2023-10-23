@@ -1,3 +1,4 @@
+from rest_framework.pagination import PageNumberPagination
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from rest_framework.response import Response
@@ -22,19 +23,42 @@ class CategoryListView(APIView):
 
 class BlogpostListVIew(APIView):
     def get(self, request, category_slug=None, format=None):
+        query = request.query_params.get("query")
+        print(category_slug)
+
         if category_slug is not None:
             articles = models.BlogPost.objects.filter(category__slug=category_slug)
+            print(articles)
         elif (
             request.query_params.get("limit")
             and request.query_params.get("limit") is not None
         ):
             limit = int(request.query_params["limit"])
             articles = models.BlogPost.objects.order_by("created_at")[: int(limit)]
+
+        elif query is not None and query == "mostpopular":
+            articles = models.BlogPost.objects.order_by("-views_count")
+
         else:
             articles = models.BlogPost.objects.all()
 
-        serializer = serializers.BlogpostSerializer(articles, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        page = request.query_params.get(
+            "page", 1
+        )  # Get the requested page from query params
+        page_size = 10  # Set the number of items per page
+        start_index = (int(page) - 1) * page_size  # Convert page to int
+        end_index = start_index + page_size
+
+        serializer = serializers.BlogpostSerializer(
+            articles[start_index:end_index], many=True
+        )
+        return Response(
+            {
+                "results": serializer.data,
+                "next": f"?page={int(page) + 1}" if end_index < len(articles) else None,
+            },
+            status=status.HTTP_200_OK,
+        )
 
 
 # sindle article view

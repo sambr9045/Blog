@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import HTMLRenderer from "./components/HTMLrender";
 import { useParams } from "react-router-dom";
 import Header from "./components/Header";
-import HTMLRenderer from "./components/HTMLrender";
 import { Helmet } from "react-helmet";
+import axios from "axios";
 
 function Article() {
   const { slug } = useParams();
   const [articleData, setArticleData] = useState(null);
   const [loadind, setLoading] = useState(true);
+
+  const UpdateUserView = (postid) => {
+    axios.post(`http://127.0.0.1:8000/blogapi/article-viewcount-update/`, {
+      id: postid, // Replace with your data
+    });
+  };
 
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/blogapi/article/${slug}`, {
@@ -20,10 +27,8 @@ function Article() {
       .then((response) => response.json())
       .then((data) => {
         setArticleData(data);
-        // <Helmet>
-        //   <title>SBINFOHUB|{data.title}</title>
-        // </Helmet>;
         setLoading(false);
+        UpdateUserView(data.id);
       })
       .catch((error) => console.error("Error:", error));
 

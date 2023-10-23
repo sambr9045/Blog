@@ -4,37 +4,61 @@ import { Helmet } from "react-helmet";
 import Sidebar from "./components/sidebar";
 
 export default function Articles() {
-  const [blogpost, setBlogpost] = useState("");
+  const [blogpost, setBlogpost] = useState([]);
   const [articleLoader, setArticleLoader] = useState(true);
+  const [nextPage, setNextPage] = useState("");
+  const [nextPageLoading, setNextPageLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const domain = "http://127.0.0.1:8000";
-  // fecth Header
+
   const Headers = {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Origin: "http://localhost:5173/", // Set this to your React app's URL
+      Origin: "http://localhost:5173/",
     },
   };
 
-  // fethc articles from api
-  const getArticle = () => {
-    fetch("http://127.0.0.1:8000/blogapi/articles/", Headers)
-      .then((response) => response.json()) // Parse the response as JSON
+  const getArticle = (url) => {
+    fetch(url, Headers)
+      .then((response) => response.json())
       .then((data) => {
-        setBlogpost(data);
+        console.log(data);
+        setBlogpost([...blogpost, ...data.results]); // Use spread operator to append data to the existing blogpost state
+        setNextPage(data.next);
         setArticleLoader(false);
+        setNextPageLoading(false);
+        setIsLoading(false);
       })
       .catch((error) => console.error("Error:", error));
   };
 
-  //fetch tage from api
+  const handleScroll = () => {
+    if (
+      !isLoading &&
+      window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+      nextPage
+    ) {
+      setIsLoading(true);
+      setNextPageLoading(true);
+      let url = `${domain}/blogapi/articles/${nextPage}`;
+      getArticle(url); // Fetch the next page
+    } else if (nextPage === null) {
+      setNextPageLoading(false);
+    }
+  };
 
   useEffect(() => {
-    getArticle();
+    if (nextPage === "") {
+      getArticle(`${domain}/blogapi/articles/`);
+    }
+
     <Helmet>
       <title>SBINFOHUB | articles</title>
     </Helmet>;
-  }, []);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [nextPage]);
 
   return (
     <>
@@ -57,8 +81,8 @@ export default function Articles() {
                     <div
                       className=""
                       style={{
-                        width: "510px",
-                        height: "121px",
+                        minWidth: "140px",
+                        minHeight: "100px",
                       }}
                     >
                       <img
@@ -88,7 +112,7 @@ export default function Articles() {
                           {new Date(post.created_at).toLocaleString()}
                         </time>
                         <a
-                          href={post.category}
+                          href={`/category/${post.category_slug}`}
                           className="capitilize relative z-10 rounded-full bg-red-50 px-3 py-1 font-medium text-gray-900 hover:bg-red-700 hover:text-white"
                         >
                           {post.category_name}
@@ -99,6 +123,11 @@ export default function Articles() {
                 ))
               )}
             </div>
+            {nextPageLoading && (
+              <section>
+                <div className="text-center my-5 ">Loading....</div>
+              </section>
+            )}
           </div>
           <div className="Sidebar">
             <Sidebar />

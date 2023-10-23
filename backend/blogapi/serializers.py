@@ -22,6 +22,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class BlogpostSerializer(serializers.ModelSerializer):
     category_name = serializers.ReadOnlyField(source="category.name")
+    category_slug = serializers.ReadOnlyField(source="category.slug")
 
     class Meta:
         model = BlogPost
@@ -32,6 +33,7 @@ class BlogpostSerializer(serializers.ModelSerializer):
             "description",
             "category",
             "category_name",
+            "category_slug",
             "tags",
             "image",
             "thumbnail",
