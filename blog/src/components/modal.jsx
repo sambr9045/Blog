@@ -19,14 +19,14 @@ export default function Modal({ open, setOpen }) {
     <Transition.Root
       show={open}
       as={Fragment}
-      onClick={() => setOpen(false)}
-      ref={cancelButtonRef}
+      // onClick={() => setOpen(true)}
+      // ref={cancelButtonRef}
+      onClose={() => setOpen(true)}
     >
       <Dialog
         as="div"
         className="relative z-10"
-        initialFocus={cancelButtonRef}
-        onClose={setOpen}
+        // initialFocus={cancelButtonRef}
       >
         <Transition.Child
           as={Fragment}
@@ -41,7 +41,7 @@ export default function Modal({ open, setOpen }) {
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex lg:min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"

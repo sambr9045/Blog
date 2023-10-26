@@ -65,10 +65,7 @@ export default function Carousel() {
               <h2 className="font-bold text-white" style={{ fontSize: "3rem" }}>
                 Personal Finance
               </h2>
-              <p
-                className="text-gray-300 mt-2 "
-                style={{ fontSize: "3.5 em", width: "60%" }}
-              >
+              <p className="text-gray-300 mt-2 carousole_text">
                 Explore the world of managing money, budgeting, saving,
                 investing, and making informed financial decisions. Learn
                 strategies to achieve your financial goals, build wealth, and
@@ -103,10 +100,7 @@ export default function Carousel() {
               <h2 className="font-bold text-white" style={{ fontSize: "3rem" }}>
                 Information Technogoy
               </h2>
-              <p
-                className="text-gray-300 mt-2 "
-                style={{ fontSize: "1.5 em", width: "60%" }}
-              >
+              <p className="text-gray-300 mt-2 carousole_text">
                 Uncover the world of computer systems, software, and data
                 management. Learn to harness technology for efficient
                 information processing and seamless communication across
@@ -140,10 +134,7 @@ export default function Carousel() {
               <h2 className="font-bold text-white" style={{ fontSize: "3rem" }}>
                 Education
               </h2>
-              <p
-                className="text-gray-300 mt-2 "
-                style={{ fontSize: "1.5 em", width: "60%" }}
-              >
+              <p className="text-gray-300 mt-2 carousole_text ">
                 Embark on a journey through the realm of education, where you'll
                 delve into the intricacies of learning, teaching methodologies,
                 and educational technology. Discover how technology empowers
@@ -181,10 +172,7 @@ export default function Carousel() {
               <h2 className="font-bold text-white" style={{ fontSize: "3rem" }}>
                 Travel
               </h2>
-              <p
-                className="text-gray-300 mt-2 "
-                style={{ fontSize: "1.5 em", width: "60%" }}
-              >
+              <p className="text-gray-300 mt-2 carousole_text">
                 Embark on journeys to captivating destinations, unravel travel
                 tips, and immerse yourself in cultural experiences. From hidden
                 gems to iconic landmarks, discover the world through our travel

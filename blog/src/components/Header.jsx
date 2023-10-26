@@ -27,41 +27,7 @@ export default function Header() {
   }
   const [loading, setLoading] = useState(false);
   const categories = useContext(CategoryContext);
-  console.log(categories);
   // fecth categori
-
-  const products = [
-    {
-      name: "Analytics",
-      description: "Get a better understanding of your traffic",
-      href: "",
-      icon: ChartPieIcon,
-    },
-    {
-      name: "Engagement",
-      description: "Speak directly to your customers",
-      href: "#",
-      icon: CursorArrowRaysIcon,
-    },
-    {
-      name: "Security",
-      description: "Your customers’ data will be safe and secure",
-      href: "#",
-      icon: FingerPrintIcon,
-    },
-    {
-      name: "Integrations",
-      description: "Connect with third-party tools",
-      href: "#",
-      icon: SquaresPlusIcon,
-    },
-    {
-      name: "Automations",
-      description: "Build strategic funnels that will convert",
-      href: "#",
-      icon: ArrowPathIcon,
-    },
-  ];
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -166,21 +132,6 @@ export default function Header() {
                       ))
                     )}
                   </div>
-                  {/* <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                    {callsToAction.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                      >
-                        <item.icon
-                          className="h-5 w-5 flex-none text-gray-400"
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </a>
-                    ))}
-                  </div> */}
                 </Popover.Panel>
               </Transition>
             </Popover>
@@ -238,6 +189,27 @@ export default function Header() {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
+                <a
+                  href="#"
+                  className="text-sm font-semibold leading-6 text-gray-900 hover:text-red-900"
+                  onClick={seache}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    />
+                  </svg>
+                  <Modal open={open} setOpen={setOpen} />
+                </a>
                 <Disclosure as="div" className="-mx-3">
                   {({ open }) => (
                     <>
@@ -252,12 +224,12 @@ export default function Header() {
                         />
                       </Disclosure.Button>
                       <Disclosure.Panel className="mt-2 space-y-2">
-                        {[...products, ...callsToAction].map((item) => (
+                        {categories.map((item) => (
                           <Disclosure.Button
                             key={item.name}
                             as="a"
-                            href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            href={`/category/${item.slug}`}
+                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-red-100"
                           >
                             {item.name}
                           </Disclosure.Button>

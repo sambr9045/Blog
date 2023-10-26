@@ -26,7 +26,7 @@ export default function Sidebar() {
   return (
     <>
       <div
-        className=" p-5 rounded-md shadow-sm bg-red-50 "
+        className=" p-5 rounded-md shadow-sm bg-red-50 sidebarRo"
         style={{ height: "450px" }}
       >
         {/* Seach input  */}

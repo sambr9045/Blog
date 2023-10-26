@@ -1,3 +1,4 @@
+import { APIENDPOITDOMAIN, ORIGIN } from "./components/constants/constants";
 import React, { useEffect, useState, useContext } from "react";
 import HTMLRenderer from "./components/HTMLrender";
 import { useParams } from "react-router-dom";
@@ -9,19 +10,20 @@ function Article() {
   const { slug } = useParams();
   const [articleData, setArticleData] = useState(null);
   const [loadind, setLoading] = useState(true);
+  const domain = APIENDPOITDOMAIN;
 
   const UpdateUserView = (postid) => {
-    axios.post(`http://127.0.0.1:8000/blogapi/article-viewcount-update/`, {
+    axios.post(`${domain}/blogapi/article-viewcount-update/`, {
       id: postid, // Replace with your data
     });
   };
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/blogapi/article/${slug}`, {
+    fetch(`${domain}/blogapi/article/${slug}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Origin: "http://localhost:5173/", // Set this to your React app's URL
+        Origin: ORIGIN, // Set this to your React app's URL
       },
     })
       .then((response) => response.json())
@@ -31,10 +33,6 @@ function Article() {
         UpdateUserView(data.id);
       })
       .catch((error) => console.error("Error:", error));
-
-    <Helmet>
-      <title>SBINFOHUB | articles details</title>
-    </Helmet>;
   }, [slug]);
 
   return (
@@ -45,8 +43,14 @@ function Article() {
         <p className="text-center mt-20">Loading..</p>
       ) : (
         <>
+          <Helmet>
+            <title>{`SBINFOHUB | ${articleData.title}`}</title>
+            <meta name="description" content={articleData.title} />
+            <meta name="robots" content="index, follow" />
+          </Helmet>
+          ;
           <div style={{ margin: "0 auto" }}>
-            <div className="articleView w-2/3  mx-auto mt-10  p-4 ms:w-3/3` sm:text-lg">
+            <div className="articleView lg:w-2/3   mx-auto mt-10  p-4 md:w-full  sm:w-full">
               <h1 className="text-6xl text-center mb-10">
                 {articleData.title}
               </h1>

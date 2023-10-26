@@ -15,7 +15,11 @@ const fetchData = (endpoint, setData) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      setData(data);
+      if (endpoint === "articles/?limit=10") {
+        setData(data.results);
+      } else {
+        setData(data);
+      }
     })
     .catch((error) => console.error("Error:", error));
 };
@@ -104,7 +108,7 @@ export default function Home() {
                     src={`${domain}${post.thumbnail}`}
                     alt=""
                     className="mo tn adq aij aqe bxy cvd rounded-lg"
-                    style={{ maxWidth: "300px", maxHeight: "200px" }}
+                    style={{ minWidth: "300px", minHeight: "200px" }}
                   />
                   <div className="aa ak adq bbt bbx bco"></div>
                 </div>
@@ -168,7 +172,7 @@ export default function Home() {
                       src={`${domain}${post.thumbnail}`}
                       alt=""
                       className="mo tn adq aij aqe bxy cvd rounded-lg"
-                      style={{ maxWidth: "300px", maxHeight: "200px" }}
+                      style={{ minWidth: "300px", minHeight: "200px" }}
                     />
                     <div className="aa ak adq bbt bbx bco"></div>
                   </div>
@@ -249,7 +253,7 @@ export default function Home() {
                     src={`${domain}${post.thumbnail}`}
                     alt=""
                     className="mo tn adq aij aqe bxy cvd rounded-lg"
-                    style={{ maxWidth: "300px", maxHeight: "200px" }}
+                    style={{ minWidth: "300px", minHeight: "200px" }}
                   />
                   <div className="aa ak adq bbt bbx bco"></div>
                 </div>
