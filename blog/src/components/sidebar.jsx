@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { APIENDPOITDOMAIN } from "./constants/constants";
 
 export default function Sidebar() {
   const [tags, setTags] = useState([]);
@@ -11,7 +12,7 @@ export default function Sidebar() {
   };
 
   const getTags = () => {
-    fetch("http://127.0.0.1:8000/blogapi/tags/", Headers)
+    fetch(`${APIENDPOITDOMAIN}/blogapi/tags/`, Headers)
       .then((response) => response.json())
       .then((data) => {
         setTags(data);

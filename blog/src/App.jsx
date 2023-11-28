@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import CategoryContext from "./components/context/CategorieContext";
 import MainContext from "./components/context/MainContext";
+import { APIENDPOITDOMAIN } from "./components/constants/constants";
 import Home from "./Home";
 import About from "./About";
 import Articles from "./Articles";
@@ -18,7 +19,7 @@ function App() {
   const [mainData, setMainData] = useState();
 
   const getCategories = useCallback(() => {
-    fetch("http://127.0.0.1:8000/blogapi/categories/", {
+    fetch(`${APIENDPOITDOMAIN}/blogapi/categories/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
