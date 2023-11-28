@@ -7,8 +7,6 @@ import About from "./About";
 import Articles from "./Articles";
 import Article from "./Article";
 import Contact from "./Contact";
-import Login from "./components/account/login";
-import Cpanel from "./components/cpanel";
 import Category from "./Category";
 import { Helmet } from "react-helmet";
 import Search from "./Search";
@@ -56,8 +54,7 @@ function App() {
               />
               <Route path="/articles" element={<Articles />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/cpanel" element={<Cpanel />} />
+            
               <Route path="/article/:slug" element={<Article />} />
               <Route path="/category/:slug" element={<Category />} />
               <Route path="/search" element={<Search />} />

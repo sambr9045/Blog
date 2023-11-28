@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Carousel from "./components/Carousel";
 import { Helmet } from "react-helmet";
-const domain = "http://127.0.0.1:8000";
+import { APIENDPOITDOMAIN } from "./components/constants/constants";
+const domain = APIENDPOITDOMAIN;
 const headers = {
   "Content-Type": "application/json",
   Origin: "http://localhost:5173/", // Set this to your React app's URL
