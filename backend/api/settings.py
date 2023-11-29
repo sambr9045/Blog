@@ -50,9 +50,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     # cors headers
     "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -139,7 +139,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # cor allowed origin
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Add your React app's URL
+    "http://sbinfohub.online",
+    "https://sbinfohub.online",
 ]
 
 
@@ -151,9 +152,4 @@ CKEDITOR_CONFIGS = {
 }
 
 CSRF_USE_SESSIONS = True
-
-# cors allowed origin
-CORS_ALLOWED_ORIGINS = (
-    "http://localhost:5173",
-    "http://127.0.0.1:8000",
-)  # Add the origin of your React app
+CORS_ALLOW_CREDENTIALS = True
