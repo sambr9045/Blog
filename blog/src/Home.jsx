@@ -6,7 +6,7 @@ import { APIENDPOITDOMAIN } from "./components/constants/constants";
 const domain = APIENDPOITDOMAIN;
 const headers = {
   "Content-Type": "application/json",
-  Origin: "http://localhost:5173/", // Set this to your React app's URL
+  Origin: "http://sbinfohub.online", // Set this to your React app's URL
 };
 
 const fetchData = (endpoint, setData) => {
