@@ -1,0 +1,115 @@
+.sb_home {}
+
+.swiper .carousole_text {
+    width: 50%;
+    text-align: left;
+    font-size: 25px;
+}
+
+.swiper .container {
+    max-width: 100%;
+}
+
+.articleView {
+    width: 50% !important;
+}
+
+.articleView h1 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.sbp {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: gray;
+    text-align: left;
+    font-size: 16px;
+}
+
+.articleView h2 {
+    font-size: 25px;
+    margin-bottom: .5rem;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+    color: inherit;
+    color: #6c757d !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.articleView img {
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 5px;
+    width: 100% !important;
+    height: auto !important;
+    background-size: cover;
+}
+
+.articleView p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    font-size: 19px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+@media only screen and (max-width: 1300px) {
+    .articleView {
+        width: 60% !important;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .swiper .swiper-slider {
+        width: 100%;
+    }
+
+    .articleView {
+        width: 70% !important;
+    }
+}
+
+@media only screen and (max-width: 870px) {
+    .swiper .carousole_text {
+        width: 70%;
+        text-align: left;
+        font-size: 19px;
+    }
+
+    .articleView {
+        width: 85% !important;
+    }
+}
+
+@media only screen and (max-width: 670px) {
+    .swiper .carousole_text {
+        width: 95%;
+        text-align: left;
+        font-size: 18px;
+    }
+
+    .articleView {
+        width: 95% !important;
+        margin-top: 0px !important;
+    }
+
+    .articleView h1 {
+        font-size: 30px;
+    }
+
+    .articleView h2 {
+        font-size: 19px;
+    }
+
+    .article-content {
+        padding: 40px !important;
+    }
+}

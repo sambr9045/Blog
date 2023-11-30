@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Carousel from "./components/Carousel";
 import { Helmet } from "react-helmet";
-import { APIENDPOITDOMAIN } from "./components/constants/constants";
+import { APIENDPOITDOMAIN, ORIGIN } from "./components/constants/constants";
 const domain = APIENDPOITDOMAIN;
 const headers = {
   "Content-Type": "application/json",
-  Origin: "http://sbinfohub.online", // Set this to your React app's URL
+  Origin: ORIGIN, // Set this to your React app's URL
 };
+
+alert;
 
 const fetchData = (endpoint, setData) => {
   fetch(`${domain}/blogapi/${endpoint}`, {
@@ -45,7 +47,7 @@ export default function Home() {
       <Header />
 
       <div
-        className="relative bg-cover bg-center inset-0"
+        className="relative bg-cover bg-center inset-0 sb-home"
         // style={{ backgroundImage: `url(${background4})` }}
       >
         {/* <div className="absolute inset-0 bg-black opacity-40"></div>
@@ -125,13 +127,13 @@ export default function Home() {
                   </a>
                 </div>
                 <div className="group relative">
-                  <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                    <a href={`article/${post.slug}`}>
+                  <h3 className=" text-lg font-semibold leading-6 text-red-900 group-hover:text-gray-600">
+                    <a href={`/article/${post.slug}`}>
                       <span className="absolute inset-0" />
                       {post.title}
                     </a>
                   </h3>
-                  <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+                  <p className="mt-1 line-clamp-3 text-sm leading-6 text-gray-600 sbp">
                     {post.description}
                   </p>
                 </div>
@@ -189,13 +191,13 @@ export default function Home() {
                     </a>
                   </div>
                   <div className="group relative">
-                    <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                      <a href={`article/${post.slug}`}>
+                    <h3 className=" text-lg font-semibold leading-6 text-red-900 group-hover:text-gray-600">
+                      <a href={`/article/${post.slug}`}>
                         <span className="absolute inset-0" />
                         {post.title}
                       </a>
                     </h3>
-                    <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+                    <p className="mt-1 line-clamp-3 text-sm leading-6 text-gray-600 sbp">
                       {post.description}
                     </p>
                   </div>
@@ -270,13 +272,13 @@ export default function Home() {
                   </a>
                 </div>
                 <div className="group relative">
-                  <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                  <h3 className="text-lg font-semibold leading-6 text-red-900 group-hover:text-gray-600">
                     <a href={post.slug}>
                       <span className="absolute inset-0" />
                       {post.title}
                     </a>
                   </h3>
-                  <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+                  <p className="line-clamp-3 text-sm leading-6 text-gray-600 sbp">
                     {post.description}
                   </p>
                 </div>

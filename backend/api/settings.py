@@ -127,7 +127,7 @@ USE_TZ = True
 
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
+# MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
 # Static files (CSS, JavaScript, Images)
 
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -144,6 +144,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOWED_ORIGINS = [
    
     "https://sbinfohub.online",
+    "http://localhost:5173",
 ]
 
 
@@ -155,4 +156,4 @@ CKEDITOR_CONFIGS = {
 }
 
 CSRF_USE_SESSIONS = True
-CORS_ALLOW_CREDENTIALS = False
+CORS_ALLOW_ALL_ORIGINS = False

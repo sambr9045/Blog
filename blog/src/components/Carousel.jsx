@@ -1,6 +1,9 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import image1 from "../images/carousol/1.webp";
+import image2 from "../images/carousol/2.webp";
+import image3 from "../images/carousol/3.webp";
+import image4 from "../images/carousol/4.webp";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -50,7 +53,7 @@ export default function Carousel() {
           <div
             className="container"
             style={{
-              backgroundImage: "url('/img/carousol/1.jpg')",
+              backgroundImage: `url(${image1})`,
               backgroundSize: "cover",
               backgroundPosition: "center center",
               backgroundRepeat: "no-repeat",
@@ -85,7 +88,7 @@ export default function Carousel() {
           <div
             className="container"
             style={{
-              backgroundImage: "url('/img/carousol/3.jpg')",
+              backgroundImage: `url(${image2})`,
               backgroundSize: "cover",
               backgroundPosition: "center center",
               backgroundRepeat: "no-repeat",
@@ -119,7 +122,7 @@ export default function Carousel() {
           <div
             className="container"
             style={{
-              backgroundImage: "url('/img/carousol/4.jpg')",
+              backgroundImage: `url(${image3})`,
               backgroundSize: "cover",
               backgroundPosition: "center center",
               backgroundRepeat: "no-repeat",
@@ -157,7 +160,7 @@ export default function Carousel() {
           <div
             className="container"
             style={{
-              backgroundImage: "url('/img/carousol/5.jpg')",
+              backgroundImage: `url(${image4})`,
               backgroundSize: "cover",
               backgroundPosition: "center center",
               backgroundRepeat: "no-repeat",

@@ -36,7 +36,7 @@ export default function ArticleList({ blogpost }) {
               <h3 className="text-lg font-semibold leading-6 text-red-900 group-hover:text-gray-600">
                 <a href={`/article/${post.slug}`}>{post.title}</a>
               </h3>
-              <p className="mt-1 line-clamp-3 text-sm leading-6 text-gray-600">
+              <p className="mt-1 line-clamp-3 text-sm leading-6 text-gray-600 sbp">
                 {/* <HTMLRenderer htmlContent={post.article} /> */}
                 {post.description}
               </p>
