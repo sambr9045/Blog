@@ -60,12 +60,17 @@ export default function Carousel() {
             }}
           >
             <div className="relative p-2" style={TextonImage}>
-              <h2 className="font-bold text-white" style={{ fontSize: "3rem" }}>
+              <h2
+                className="font-bold text-white"
+                style={{
+                  fontSize: "3rem",
+                }}
+              >
                 Personal Finance
               </h2>
               <p className="text-gray-300 mt-2 carousole_text">
                 Explore the world of managing money, budgeting, saving,
-                investing, and making informed financial decisions. Learn
+                investing, and making informed financial decisions.Learn
                 strategies to achieve your financial goals, build wealth, and
                 secure a stable future.
               </p>
@@ -80,7 +85,6 @@ export default function Carousel() {
             <div className="filter-div" style={Overlay}></div>
           </div>
         </SwiperSlide>
-
         <SwiperSlide>
           <div
             className="container"
@@ -95,14 +99,19 @@ export default function Carousel() {
             }}
           >
             <div className="relative p-2" style={TextonImage}>
-              <h2 className="font-bold text-white" style={{ fontSize: "3rem" }}>
+              <h2
+                className="font-bold text-white"
+                style={{
+                  fontSize: "3rem",
+                }}
+              >
                 Information Technogoy
               </h2>
               <p className="text-gray-300 mt-2 carousole_text">
                 Uncover the world of computer systems, software, and data
-                management. Learn to harness technology for efficient
-                information processing and seamless communication across
-                industries. Explore digital innovation's impact on modern soc
+                management.Learn to harness technology for efficient information
+                processing and seamless communication across industries.Explore
+                digital innovation 's impact on modern soc
               </p>
               <br />
               <a
@@ -129,17 +138,22 @@ export default function Carousel() {
             }}
           >
             <div className="relative p-2" style={TextonImage}>
-              <h2 className="font-bold text-white" style={{ fontSize: "3rem" }}>
+              <h2
+                className="font-bold text-white"
+                style={{
+                  fontSize: "3rem",
+                }}
+              >
                 Education
               </h2>
               <p className="text-gray-300 mt-2 carousole_text ">
-                Embark on a journey through the realm of education, where you'll
-                delve into the intricacies of learning, teaching methodologies,
-                and educational technology. Discover how technology empowers
-                efficient information processing and seamless communication in
-                diverse fields. Explore how digital innovation is reshaping
-                modern society's approach to education and knowledge
-                dissemination.
+                Embark on a journey through the realm of education, where you
+                'll delve into the intricacies of learning, teaching
+                methodologies, and educational technology.Discover how
+                technology empowers efficient information processing and
+                seamless communication in diverse fields.Explore how digital
+                innovation is reshaping modern society 's approach to education
+                and knowledge dissemination.
               </p>
               <br />
               <a
@@ -153,7 +167,6 @@ export default function Carousel() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          {" "}
           <div
             className="container"
             style={{
@@ -167,12 +180,17 @@ export default function Carousel() {
             }}
           >
             <div className="relative p-2" style={TextonImage}>
-              <h2 className="font-bold text-white" style={{ fontSize: "3rem" }}>
+              <h2
+                className="font-bold text-white"
+                style={{
+                  fontSize: "3rem",
+                }}
+              >
                 Travel
               </h2>
               <p className="text-gray-300 mt-2 carousole_text">
                 Embark on journeys to captivating destinations, unravel travel
-                tips, and immerse yourself in cultural experiences. From hidden
+                tips, and immerse yourself in cultural experiences.From hidden
                 gems to iconic landmarks, discover the world through our travel
                 guides and recommendations.
               </p>
@@ -188,10 +206,10 @@ export default function Carousel() {
           </div>
         </SwiperSlide>
         {/* <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide> */}
+              <SwiperSlide>Slide 6</SwiperSlide>
+              <SwiperSlide>Slide 7</SwiperSlide>
+              <SwiperSlide>Slide 8</SwiperSlide>
+              <SwiperSlide>Slide 9</SwiperSlide> */}
       </Swiper>
     </>
   );

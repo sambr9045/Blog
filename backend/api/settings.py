@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["34.125.177.184", "localhost", "127.0.0.1", "sbinfohub.online", "api.sbinfohub.online"]
 
@@ -144,6 +144,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 CORS_ALLOWED_ORIGINS = [
    
     "https://sbinfohub.online",
+    "http://localhost",
+    "http://localhost:5173"
 ]
 
 
